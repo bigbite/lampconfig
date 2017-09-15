@@ -1,0 +1,1 @@
+curl -s -L https://raw.githubusercontent.com/bigbitecreative/lampconfig/master/installer.sh | bash -s && lampconfig build
