@@ -39,7 +39,7 @@ program
 program
   .command('errors [env]')
   .description('Toggle php errors')
-  .action(() => addSite(store));
+  .action(() => toggleErrors(store));
 
 /**
  * Run Programme
