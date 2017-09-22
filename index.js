@@ -2,12 +2,13 @@
 
 "use strict";
 
+const createStore = require('./lib/store');
 const program = require('commander');
 const buildServer = require('./lib/buildServer');
 const addSite = require('./lib/addSite');
-const store = require('./lib/store');
+const toggleErrors = require('./lib/toggleErrors');
 
-const Store = store('/etc/lampconfig', 'config.js');
+const store = createStore('/etc/lampconfig', 'config.js');
 
 /**
 * Set Program Options
@@ -22,7 +23,7 @@ program
 program
   .command('build [env]')
   .description('Build a LAMP stack')
-  .action(() => buildServer(Store));
+  .action(() => buildServer(store));
 
 /**
  * Site Command
@@ -30,7 +31,15 @@ program
 program
   .command('site [env]')
   .description('Add a site')
-  .action(() => addSite(Store));
+  .action(() => addSite(store));
+
+/**
+ * Errors Command
+ */
+program
+  .command('errors [env]')
+  .description('Toggle php errors')
+  .action(() => addSite(store));
 
 /**
  * Run Programme
